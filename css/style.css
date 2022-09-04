@@ -144,6 +144,17 @@ button .navbar-toggler {
   color: var(--secondary);
 }
 
+/*** Icon ***/
+.icon {
+  padding: 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff ;
+  border-radius: 50%;
+  border: 1px dashed var(--primary) !important;
+}
+
 /* ------------------------------------------------------------------------------------------- */
 
 /* Media Queries */
