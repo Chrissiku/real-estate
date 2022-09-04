@@ -1,8 +1,8 @@
-*{
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    outline: none;
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  outline: none;
 }
 
 :root {
@@ -10,6 +10,10 @@
   --secondary: #ff6922;
   --light: #effdf5;
   --dark: #0e2e50;
+}
+
+body {
+  background-color: var(--dark);
 }
 
 /*** Button ***/
@@ -74,7 +78,7 @@ button .navbar-toggler {
 }
 
 .navbar {
-  box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
 }
 
 .navbar .dropdown-toggle::after {
@@ -107,6 +111,7 @@ button .navbar-toggler {
 
 /* Media Queries */
 @media (min-width: 992px) {
+  /* Navbar */
   .navbar .nav-item .dropdown-menu {
     display: block;
     top: 100%;
