@@ -1,0 +1,127 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    outline: none;
+}
+
+:root {
+  --primary: #190678;
+  --secondary: #ff6922;
+  --light: #effdf5;
+  --dark: #0e2e50;
+}
+
+/*** Button ***/
+.btn {
+  transition: 0.5s;
+}
+
+.btn.btn-primary,
+.btn.btn-secondary {
+  color: #ffffff;
+}
+
+.btn.btn-primary:hover,
+.btn.btn-secondary:hover {
+  background-color: var(--dark);
+  color: var(--secondary);
+}
+
+.btn-square {
+  width: 38px;
+  height: 38px;
+}
+
+.btn-sm-square {
+  width: 32px;
+  height: 32px;
+}
+
+.btn-lg-square {
+  width: 48px;
+  height: 48px;
+}
+
+.btn-square,
+.btn-sm-square,
+.btn-lg-square {
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: normal;
+  border-radius: 50px;
+}
+
+button .navbar-toggler {
+  width: 20px;
+}
+
+/*** Navbar ***/
+.nav-bar {
+  position: relative;
+  margin-top: 45px;
+  padding: 0 3rem;
+  transition: 0.5s;
+  z-index: 9999;
+}
+
+.nav-bar.sticky-top {
+  position: sticky;
+  padding: 0;
+  z-index: 9999;
+}
+
+.navbar {
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+}
+
+.navbar .dropdown-toggle::after {
+  border: none;
+  content: "\f107";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  vertical-align: middle;
+  margin-left: 5px;
+  transition: 0.5s;
+}
+
+.navbar .dropdown-toggle[aria-expanded="true"]::after {
+  transform: rotate(-180deg);
+}
+
+.navbar-light .navbar-nav .nav-link {
+  margin-right: 30px;
+  padding: 25px 0;
+  color: var(--secondary);
+  font-size: 15px;
+  text-transform: uppercase;
+  outline: none;
+}
+
+.navbar-light .navbar-nav .nav-link:hover,
+.navbar-light .navbar-nav .nav-link.active {
+  color: var(--primary);
+}
+
+/* Media Queries */
+@media (min-width: 992px) {
+  .navbar .nav-item .dropdown-menu {
+    display: block;
+    top: 100%;
+    margin-top: 0;
+    transform: rotateX(-75deg);
+    transform-origin: 0% 0%;
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.5s;
+  }
+
+  .navbar .nav-item:hover .dropdown-menu {
+    transform: rotateX(0deg);
+    visibility: visible;
+    transition: 0.5s;
+    opacity: 1;
+  }
+}
