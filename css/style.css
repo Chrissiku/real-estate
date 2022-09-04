@@ -150,9 +150,62 @@ button .navbar-toggler {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: #fff ;
+  background: #fff;
   border-radius: 50%;
   border: 1px dashed var(--primary) !important;
+}
+
+/*** property type ***/
+.cat-item div {
+  background: #ffffff;
+  border: 1px dashed rgba(0, 185, 142, 0.3);
+  transition: 0.5s;
+}
+
+.cat-item:hover div {
+  background: var(--primary);
+  border-color: transparent;
+}
+
+.cat-item div * {
+  transition: 0.5s;
+}
+
+.cat-item:hover div * {
+  color: #ffffff !important;
+}
+
+/*** Property List ***/
+.nav-pills .nav-item .btn {
+  color: var(--dark);
+}
+
+.nav-pills .nav-item .btn:hover,
+.nav-pills .nav-item .btn.active {
+  color: #ffffff;
+}
+
+.property-item {
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
+}
+
+.property-item img {
+  transition: 0.5s;
+  height: 200px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.property-item:hover img {
+  transform: scale(1.1);
+}
+
+.property-item .border-top {
+  border-top: 1px dashed rgba(0, 185, 142, 0.3) !important;
+}
+
+.property-item .border-end {
+  border-right: 1px dashed rgba(0, 185, 142, 0.3) !important;
 }
 
 /* ------------------------------------------------------------------------------------------- */
