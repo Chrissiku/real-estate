@@ -133,13 +133,3 @@ class QueryBuilder
 
 }
 
-// $qb = new QueryBuilder(); 
-// echo $qb->select(['name', 'email']) 
-//         ->select(['country', 'address'])
-//         ->from('user')
-//         ->where('id > 4')
-//         ->orderBy('id','asc')
-//         ->orderBy('name', 'desc')
-//         ->limit(30)
-//         ->offset(13)
-//         ->toSQL();
