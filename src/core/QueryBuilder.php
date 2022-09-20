@@ -2,7 +2,6 @@
 namespace App\Core;
 
 use PDO;
-use PDOStatement;
 
 class QueryBuilder
 {
@@ -129,6 +128,15 @@ class QueryBuilder
 
         if($results === false) return null;
         return $results;
+    }
+
+    /**
+     * clone the current object to not alter the value of $select since it can be used elsewhere after
+     * this count method
+     */
+    public function count (PDO $pdo)
+    {
+        return (int)(clone $this)->select("COUNT(id) count")->fetch($pdo, 'count');
     }
 
 }
