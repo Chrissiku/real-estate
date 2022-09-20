@@ -1,9 +1,7 @@
 <?php
 namespace App;
 
-use PDO;
 use App\Core\Database;
-use App\Core\Session;
 
 class App
 {
