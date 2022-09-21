@@ -37,7 +37,6 @@ class Database
         }
     }
 
-
     public function query (string $query, $params = []): PDOStatement|bool
     {
         if(empty($params)) {

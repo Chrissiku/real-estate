@@ -59,3 +59,8 @@ CREATE TABLE booking
     FOREIGN KEY property_id REFERENCES property (id),
     FOREIGN KEY tenant_id REFERENCES tenant (id)
 )
+
+CREATE TABLE owner
+(
+    
+)

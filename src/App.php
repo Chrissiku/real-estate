@@ -2,11 +2,14 @@
 namespace App;
 
 use App\Core\Database;
+use App\Core\Session;
 
 class App
 {
 
     private static $db = null;
+
+    private static $auth = null;
 
     /**
      * defines a singleton of the Database class
@@ -18,5 +21,13 @@ class App
             self::$db = new Database('real_estate_db');
         }
         return self::$db;
+    }
+
+    public static function getAuth ()
+    {
+        if(is_null(self::$auth)) {
+            self::$auth = new Auth(Session::getSessionInstance());
+        }
+        return self::$auth;
     }
 }

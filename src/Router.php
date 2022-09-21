@@ -30,7 +30,7 @@ class Router
             $view = $match['target'];
             $params = $match['params'];
             ob_start();
-            require_once $this->view_path . '/' . $view . '.php';
+            require_once $this->view_path . '/components' . $view . '.php';
             $content = ob_get_clean();
             require_once $this->view_path . '/layouts/layout.php';
         }else {

@@ -76,7 +76,7 @@ class QueryBuilder
         return $this->offset(($this->page - 1) * $this->limit);
     }
 
-    public function toSQL ()
+    private function toSQL ()
     {
         $fields = implode(', ', $this->fields); 
         
@@ -101,30 +101,42 @@ class QueryBuilder
         return $sql;
     }
 
-    public function setParam (string $key, $value)
+    public function setParam (string $key, $value): self
     {
         $this->params[$key] = $value;
+        return $this;
     }
 
-    public function fetch (PDO $pdo, string $field = null)
+    private function shift_query_prepare (PDO $pdo)
     {
-        $query = $pdo->prepare($this->toSQL());
-        $query->execute($this->params);
-        $result = $query->fetch();
+        if(empty($this->params)) {
+            $query = $pdo->query($this->toSQL());
+        }else {
+            $query = $pdo->prepare($this->toSQL());
+            $query->execute($this->params);
+        }
+        return $query;
+    }
+
+    public function fetch (PDO $pdo, ?string $field = null)
+    {
+        $query = $this->shift_query_prepare($pdo);
+
+        $result = $query->fetch(PDO::FETCH_OBJ);
 
         if($result === false) return null;
 
         if(!is_null($field)) {
-            return $result[$field] ?? null;
+            return $result->$field ?? null;
         }
         return $result;
     }
 
     public function fetchAll (PDO $pdo)
     {
-        $query = $pdo->prepare($this->toSQL());
-        $query->execute($this->params);
-        $results = $query->fetchAll();
+        $query = $this->shift_query_prepare($pdo);
+
+        $results = $query->fetchAll(PDO::FETCH_OBJ);
 
         if($results === false) return null;
         return $results;
@@ -137,6 +149,19 @@ class QueryBuilder
     public function count (PDO $pdo)
     {
         return (int)(clone $this)->select("COUNT(id) count")->fetch($pdo, 'count');
+    }
+
+    public function insert (PDO $pdo, string $table, array $columns, array $params)
+    {
+        $columns = implode('= ?, ', $columns) . ' = ?';
+        $query = $pdo->prepare("INSERT INTO $table SET $columns");
+        return $query->execute($params);
+    }
+
+    public function delete (PDO $pdo, string $table, int $id)
+    {
+        $query = $pdo->prepare("DELETE FROM $table WHERE id = ?");
+        return $query->execute([$id]);   
     }
 
 }

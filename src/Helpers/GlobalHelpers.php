@@ -5,6 +5,7 @@ class GlobalHelpers
 {
     public static function redirect(string $page)
     {
-        header('Location: ' . $page . '.php');
+        $ROOT_PATH = dirname(__DIR__);
+        header("Location: {$ROOT_PATH}/views/{$page}.php");
     }
 }
