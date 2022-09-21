@@ -1,9 +1,9 @@
 <?php
 
 use App\App;
-use App\Core\Form\Form;
-use App\Core\Form\TextInput;
-use App\Core\Form\PasswordInput;
+use App\Core\HTML\Form\Form;
+use App\Core\HTML\Form\TextInput;
+use App\Core\HTML\Form\PasswordInput;
 use App\Core\QueryBuilder;
 use App\Router;
 
@@ -12,8 +12,8 @@ require_once dirname(__DIR__) . '/vendor/autoload.php';
 
 $router = new Router(dirname(__DIR__) . '/views');
 
-// $router->get('/properties', 'properties', 'home')
-//        ->run();
+$router->get('/properties', 'properties', 'properties')
+       ->run();
 
 $queryBuilder = new QueryBuilder();
 $auth = App::getAuth();
@@ -33,7 +33,7 @@ $pdo = App::getDatabase()->getInstance();
 // echo 'Result: '. $res;
 // echo '</pre>';
 
-$form = new Form();
-$form->addElement(new TextInput('username', '', 'Username'));
-$form->addElement(new PasswordInput('password', '12345', 'Password'));
-echo $form->render();
+// $form = new Form();
+// $form->addElement(new TextInput('username', '', 'Username'));
+// $form->addElement(new PasswordInput('password', '12345', 'Password'));
+// echo $form->render();
