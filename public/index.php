@@ -1,39 +1,16 @@
 <?php
 
-use App\App;
-use App\Core\HTML\Form\Form;
-use App\Core\HTML\Form\TextInput;
-use App\Core\HTML\Form\PasswordInput;
-use App\Core\QueryBuilder;
 use App\Router;
 
 require_once dirname(__DIR__) . '/vendor/autoload.php';
 
 
-$router = new Router(dirname(__DIR__) . '/views');
+$router = new Router(dirname(__DIR__) . DIRECTORY_SEPARATOR. 'views');
 
-$router->get('/properties', 'properties', 'properties')
+$router->get('/', 'components/index', '_home')
+       ->get('/home', 'components/index', '__home')
+       ->get('/about', 'components/about', 'about')
+       ->get('/property_list', 'components/property_list', 'property_list')
+       ->get('/testimonial', 'components/testimonial', 'testimonial')
+       ->get('/contact', 'components/contact', 'contact')
        ->run();
-
-$queryBuilder = new QueryBuilder();
-$auth = App::getAuth();
-$pdo = App::getDatabase()->getInstance();
-
-// echo '<pre>';
-// $user = $auth->login($pdo, $queryBuilder, 'jim01', '12345');
-// $password = password_hash('12345', PASSWORD_BCRYPT);
-// $res = $auth->register($pdo, $queryBuilder, 'user' ,
-//        ['first_name', 'last_name', 'username', 'email', 'user_type', 'password', 'isActive'],
-//        ['john', 'doe', 'johndoe22', 'johndoe@gmail.com', 1, $password, 1]
-//    );
-
-// $res = $queryBuilder->delete($pdo, 'user', 3);
-// print_r($auth->user());
-
-// echo 'Result: '. $res;
-// echo '</pre>';
-
-// $form = new Form();
-// $form->addElement(new TextInput('username', '', 'Username'));
-// $form->addElement(new PasswordInput('password', '12345', 'Password'));
-// echo $form->render();
