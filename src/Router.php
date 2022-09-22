@@ -30,9 +30,9 @@ class Router
             $view = $match['target'];
             $params = $match['params'];
             ob_start();
-            require_once $this->view_path . '/' . $view . '.php';
+            require_once $this->view_path . DIRECTORY_SEPARATOR . 'components' . DIRECTORY_SEPARATOR . $view . '.php';
             $content = ob_get_clean();
-            require_once $this->view_path . '/layouts/layout.php';
+            require_once $this->view_path . DIRECTORY_SEPARATOR . 'layouts' . DIRECTORY_SEPARATOR . 'layout.php';
         }else {
             echo '404 Page Not Found';
             exit;
