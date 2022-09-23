@@ -2,13 +2,13 @@
 
 use App\App;
 use App\Core\QueryBuilder;
+use App\Model\PropertyType;
 
  $title = 'Home'; ?>
 
 <?php
 $pdo = App::getDatabase()->getInstance();
-$property_types = (new QueryBuilder())->from('property_type')->fetchAll($pdo);
-// dd($property_types);
+$property_types = App::getQueryBuilder()->from('property_type')->fetchAll(PropertyType::class);
 ?>
 
 <div class="container-xxl py-5">
@@ -97,9 +97,8 @@ $property_types = (new QueryBuilder())->from('property_type')->fetchAll($pdo);
             <div class="icon mb-3">
               <img class="img-fluid" src="./images/icon.png" alt="Icon" />
             </div>
-            <h6><?= $property_type->name ?></h6>
-            <span style="color: red">####to work on### </span>
-            <span>number of properties by category</span>
+            <h6><?= $property_type->getName() ?></h6>
+            <span><?= $property_type->countPropertiesById($property_type->getId()) . ' properties' ?></span>
           </div>
         </a>
       </div>
