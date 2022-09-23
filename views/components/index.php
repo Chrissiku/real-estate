@@ -1,4 +1,15 @@
-<?php $title = 'Home'; ?>
+<?php
+
+use App\App;
+use App\Core\QueryBuilder;
+
+ $title = 'Home'; ?>
+
+<?php
+$pdo = App::getDatabase()->getInstance();
+$property_types = (new QueryBuilder())->from('property_type')->fetchAll($pdo);
+// dd($property_types);
+?>
 
 <div class="container-xxl py-5">
 
@@ -79,94 +90,20 @@
       </p>
     </div>
     <div class="row g-4">
+      <?php foreach($property_types as $property_type):  ?> 
       <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
         <a class="cat-item d-block bg-light text-center rounded p-3" href="">
           <div class="rounded p-4">
             <div class="icon mb-3">
               <img class="img-fluid" src="./images/icon.png" alt="Icon" />
             </div>
-            <h6>Apartment</h6>
-            <span>123 Properties</span>
+            <h6><?= $property_type->name ?></h6>
+            <span style="color: red">####to work on### </span>
+            <span>number of properties by category</span>
           </div>
         </a>
       </div>
-      <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
-        <a class="cat-item d-block bg-light text-center rounded p-3" href="">
-          <div class="rounded p-4">
-            <div class="icon mb-3">
-              <img class="img-fluid" src="./images/icon.png" alt="Icon" />
-            </div>
-            <h6>Villa</h6>
-            <span>123 Properties</span>
-          </div>
-        </a>
-      </div>
-      <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
-        <a class="cat-item d-block bg-light text-center rounded p-3" href="">
-          <div class="rounded p-4">
-            <div class="icon mb-3">
-              <img class="img-fluid" src="./images/icon.png" alt="Icon" />
-            </div>
-            <h6>Home</h6>
-            <span>123 Properties</span>
-          </div>
-        </a>
-      </div>
-      <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.7s">
-        <a class="cat-item d-block bg-light text-center rounded p-3" href="">
-          <div class="rounded p-4">
-            <div class="icon mb-3">
-              <img class="img-fluid" src="./images/icon.png" alt="Icon" />
-            </div>
-            <h6>Office</h6>
-            <span>123 Properties</span>
-          </div>
-        </a>
-      </div>
-      <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
-        <a class="cat-item d-block bg-light text-center rounded p-3" href="">
-          <div class="rounded p-4">
-            <div class="icon mb-3">
-              <img class="img-fluid" src="./images/icon.png" alt="Icon" />
-            </div>
-            <h6>Building</h6>
-            <span>123 Properties</span>
-          </div>
-        </a>
-      </div>
-      <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
-        <a class="cat-item d-block bg-light text-center rounded p-3" href="">
-          <div class="rounded p-4">
-            <div class="icon mb-3">
-              <img class="img-fluid" src="./images/icon.png" alt="Icon" />
-            </div>
-            <h6>Townhouse</h6>
-            <span>123 Properties</span>
-          </div>
-        </a>
-      </div>
-      <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
-        <a class="cat-item d-block bg-light text-center rounded p-3" href="">
-          <div class="rounded p-4">
-            <div class="icon mb-3">
-              <img class="img-fluid" src="./images/icon.png" alt="Icon" />
-            </div>
-            <h6>Shop</h6>
-            <span>123 Properties</span>
-          </div>
-        </a>
-      </div>
-      <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.7s">
-        <a class="cat-item d-block bg-light text-center rounded p-3" href="">
-          <div class="rounded p-4">
-            <div class="icon mb-3">
-              <img class="img-fluid" src="./images/icon.png" alt="Icon" />
-            </div>
-            <h6>Garage</h6>
-            <span>123 Properties</span>
-          </div>
-        </a>
-      </div>
+      <?php endforeach; ?>
     </div>
   </div>
 </div>
