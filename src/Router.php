@@ -1,6 +1,5 @@
 <?php
 namespace App;
-require_once '../vendor/autoload.php';
 use AltoRouter;
 
 class Router
@@ -13,26 +12,31 @@ class Router
     public function __construct(string $view_path)
     {
         $this->view_path = $view_path;
+        $this->router = new AltoRouter();
     }
 
-    public function get (string $url, string $view, string $name): self
+    public function get (string $url, string $view, ?string $name = null): self
     {
-        $this->router = new AltoRouter();
-
         $this->router->map('GET', $url, $view, $name);
         return $this;
+    }
+
+    public function url(string $routeName, array $params = [])
+    {
+        return $this->router->generate($routeName, $params);
     }
 
     public function run ()
     {
         $match = $this->router->match();
         if($match) {
-            $view = $match['target'];
+            $_view = $match['target'];
             $params = $match['params'];
+            $router = $this;
             ob_start();
-            require_once $this->view_path . '/components' . $view . '.php';
+            require $this->view_path . DIRECTORY_SEPARATOR . $_view . '.php';
             $content = ob_get_clean();
-            require_once $this->view_path . '/layouts/layout.php';
+            require $this->view_path . DIRECTORY_SEPARATOR . 'layouts' . DIRECTORY_SEPARATOR . 'layout.php';
         }else {
             echo '404 Page Not Found';
             exit;

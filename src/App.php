@@ -2,6 +2,7 @@
 namespace App;
 
 use App\Core\Database;
+use App\Core\QueryBuilder;
 use App\Core\Session;
 
 class App
@@ -10,6 +11,8 @@ class App
     private static $db = null;
 
     private static $auth = null;
+
+    private static $queryBuilder = null;
 
     /**
      * defines a singleton of the Database class
@@ -29,5 +32,13 @@ class App
             self::$auth = new Auth(Session::getSessionInstance());
         }
         return self::$auth;
+    }
+
+    public static function getQueryBuilder()
+    {
+        if(is_null(self::$queryBuilder)) {
+            self::$queryBuilder = new QueryBuilder(self::getDatabase()->getInstance());
+        }
+        return self::$queryBuilder;
     }
 }

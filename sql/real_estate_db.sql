@@ -33,19 +33,8 @@ CREATE TABLE piece_detail
     salons INT(5) NOT NULL,
     rooms INT(5) NOT NULL,
     bath_rooms INT(5) NOT NULL,
-    swimming_pools INT(2) NOT NULL
-)
-
-CREATE TABLE property
-(
-    id INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
-    address TEXT(300) UNSIGNED NOT NULL,
-    piece_detail_id INT(11) NOT NULL,
-    description TEXT(500) NOT NULL,
-    price FLOAT NOT NULL,
-    isFree BOOLEAN NOT NULL DEFAULT 1,
+    swimming_pools INT(2) NOT NULL,
     PRIMARY KEY (id)
-    FOREIGN KEY (piece_detail_id) REFERENCES piece_detail (id)
 );
 
 CREATE TABLE booking
@@ -54,13 +43,58 @@ CREATE TABLE booking
     in_date DATETIME NOT NULL,
     out_date DATETIME NOT NULL,
     property_id INT(11) UNSIGNED NOT NULL,
-    tenant_id INT(11) UNSIGNED NOT NULL
+    tenant_id INT(11) UNSIGNED NOT NULL,
     PRIMARY KEY (id),
-    FOREIGN KEY property_id REFERENCES property (id),
-    FOREIGN KEY tenant_id REFERENCES tenant (id)
-)
+    CONSTRAINT fk_property
+    	FOREIGN KEY (property_id)
+        REFERENCES property (id)
+        ON DELETE CASCADE
+        ON UPDATE RESTRICT
+    CONSTRAINT fk_tenant
+    	FOREIGN KEY (tenant_id) 
+        REFERENCES tenant (id)
+        ON DELETE CASCADE
+        ON UPDATE RESTRICT
+);
 
 CREATE TABLE owner
 (
-    
-)
+    id INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+    first_name VARCHAR(25) NOT NULL,
+    last_name VARCHAR(25) NOT NULL,
+    phone_number INT(10) NOT NULL,
+    email VARCHAR(60) NOT NULL,
+    password VARCHAR(60) NOT NULL,
+    isActive BOOLEAN NOT NULL DEFAULT 0,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE property_type
+(
+    id INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+    name VARCHAR(30) NOT NULL,
+    image VARCHAR(255) NOT NULL,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE property
+(
+    id INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+    address TEXT(300) NOT NULL,
+    piece_detail_id INT(11) UNSIGNED NOT NULL,
+    property_type_id INT(11) UNSIGNED NOT NULL,
+    description TEXT(500) NOT NULL,
+    price FLOAT NOT NULL,
+    isFree BOOLEAN NOT NULL DEFAULT 1,
+    PRIMARY KEY (id),
+    CONSTRAINT fk_piece_detail
+    	FOREIGN KEY (piece_detail_id) 
+        REFERENCES piece_detail (id),
+        ON DELETE CASCADE
+        ON UPDATE RESTRICT
+    CONSTRAINT fk_property_type
+    	FOREIGN KEY (property_type_id) 
+        REFERENCES property_type (id)
+        ON DELETE CASCADE
+        ON UPDATE RESTRICT
+);

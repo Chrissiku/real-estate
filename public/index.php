@@ -1,39 +1,36 @@
 <?php
 
-use App\App;
-use App\Core\Form\Form;
-use App\Core\Form\TextInput;
-use App\Core\Form\PasswordInput;
-use App\Core\QueryBuilder;
 use App\Router;
 
 require_once dirname(__DIR__) . '/vendor/autoload.php';
 
+/**
+ * This checks there is a page param which as the value of 1 and redirect to a modified URL
+ * without this param. ex: blog?page=1 ==>> blog and blog?page=1&author=jodrack ==> blog?author=jodrack
+ */
+if(isset($_GET['page']) && $_GET['page'] === '1') {
+       $uri = explode('?', $_SERVER['REQUEST_URI'])[0];
+       $get = $_GET;
+       unset($get['page']);
+       $query = http_build_query($get);
 
-$router = new Router(dirname(__DIR__) . '/views');
+       if(!empty($query)) {
+         // add the following parameters if any.
+          $uri .= '?' . $query;
+       }
+       // redirect to the current URL with a 301 status code
+       header('Location:'. $uri);
+       http_response_code(301);
+       exit();
+}
 
-// $router->get('/properties', 'properties', 'home')
-//        ->run();
+$router = new Router(dirname(__DIR__) . DIRECTORY_SEPARATOR. 'views');
 
-$queryBuilder = new QueryBuilder();
-$auth = App::getAuth();
-$pdo = App::getDatabase()->getInstance();
-
-// echo '<pre>';
-// $user = $auth->login($pdo, $queryBuilder, 'jim01', '12345');
-// $password = password_hash('12345', PASSWORD_BCRYPT);
-// $res = $auth->register($pdo, $queryBuilder, 'user' ,
-//        ['first_name', 'last_name', 'username', 'email', 'user_type', 'password', 'isActive'],
-//        ['john', 'doe', 'johndoe22', 'johndoe@gmail.com', 1, $password, 1]
-//    );
-
-// $res = $queryBuilder->delete($pdo, 'user', 3);
-// print_r($auth->user());
-
-// echo 'Result: '. $res;
-// echo '</pre>';
-
-$form = new Form();
-$form->addElement(new TextInput('username', '', 'Username'));
-$form->addElement(new PasswordInput('password', '12345', 'Password'));
-echo $form->render();
+$router->get('/', 'components/index', '_home')
+       ->get('/home', 'components/index', '__home')
+       ->get('/about', 'components/about', 'about')
+       ->get('/property_list', 'components/property_list', 'property_list')
+       ->get('/testimonial', 'components/testimonial', 'testimonial')
+       ->get('/contact-us', 'components/contact', 'contact')
+       ->get('/admin', 'components/admin/index', 'admin_index')
+       ->run();

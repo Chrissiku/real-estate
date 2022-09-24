@@ -1,6 +1,5 @@
 <?php
 namespace App\Core;
-
 use PDO;
 
 class QueryBuilder
@@ -21,6 +20,13 @@ class QueryBuilder
     private $page;
 
     private $params = [];
+
+    private $pdo;
+
+    public function __construct(PDO $pdo)
+    {
+        $this->pdo = $pdo;
+    }
 
     public function select (...$fields): self
     {
@@ -76,7 +82,7 @@ class QueryBuilder
         return $this->offset(($this->page - 1) * $this->limit);
     }
 
-    private function toSQL ()
+    public function toSQL ()
     {
         $fields = implode(', ', $this->fields); 
         
@@ -118,11 +124,15 @@ class QueryBuilder
         return $query;
     }
 
-    public function fetch (PDO $pdo, ?string $field = null)
+    public function fetch (?string $field = null, $class = null)
     {
-        $query = $this->shift_query_prepare($pdo);
+        $query = $this->shift_query_prepare($this->pdo);
 
-        $result = $query->fetch(PDO::FETCH_OBJ);
+        if(!is_null($class)) {
+            $result = $query->fetch(PDO::FETCH_CLASS, $class);
+        }else {
+            $result = $query->fetch(PDO::FETCH_OBJ);
+        }
 
         if($result === false) return null;
 
@@ -132,11 +142,15 @@ class QueryBuilder
         return $result;
     }
 
-    public function fetchAll (PDO $pdo)
+    public function fetchAll ($class = null)
     {
-        $query = $this->shift_query_prepare($pdo);
+        $query = $this->shift_query_prepare($this->pdo);
 
-        $results = $query->fetchAll(PDO::FETCH_OBJ);
+        if(!is_null($class)) {
+            $results = $query->fetchAll(PDO::FETCH_CLASS, $class);
+        } else {
+            $results = $query->fetchAll(PDO::FETCH_OBJ);
+        }
 
         if($results === false) return null;
         return $results;
@@ -146,9 +160,9 @@ class QueryBuilder
      * clone the current object to not alter the value of $select since it can be used elsewhere after
      * this count method
      */
-    public function count (PDO $pdo)
+    public function count ()
     {
-        return (int)(clone $this)->select("COUNT(id) count")->fetch($pdo, 'count');
+        return (int)(clone $this)->select("COUNT(id) count")->fetch('count');
     }
 
     public function insert (PDO $pdo, string $table, array $columns, array $params)
@@ -165,4 +179,3 @@ class QueryBuilder
     }
 
 }
-
