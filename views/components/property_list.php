@@ -104,8 +104,6 @@ $link = $router->url('property_list');
           <div class="col-12 text-center wow fadeInUp" data-wow-delay="0.1s">
             <?= $pagination->getPreviousLink($link) ?>
             <?= $pagination->getNextLink($link) ?>
-            <!-- <a class="btn btn-primary py-3 px-5" href="">Previous</a>
-            <a class="btn btn-primary py-3 px-5 ml-auto" href="">Next</a> -->
           </div>
         </div>
       </div>
