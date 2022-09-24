@@ -10,7 +10,7 @@
       <nav aria-label="breadcrumb animated fadeIn">
         <ol class="breadcrumb text-uppercase">
           <li class="breadcrumb-item">
-            <a href="./index.html" class="text-white">Home</a>
+            <a href="/home" class="text-white">Home</a>
           </li>
           <li class="breadcrumb-item text-body active" aria-current="page">
             Conact page

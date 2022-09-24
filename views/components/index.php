@@ -1,7 +1,8 @@
 <?php
 
 use App\App;
-use App\Core\QueryBuilder;
+use App\Helpers\Number;
+use App\Model\Property;
 use App\Model\PropertyType;
 
  $title = 'Home'; ?>
@@ -9,6 +10,9 @@ use App\Model\PropertyType;
 <?php
 $pdo = App::getDatabase()->getInstance();
 $property_types = App::getQueryBuilder()->from('property_type')->fetchAll(PropertyType::class);
+
+$properties = (new Property())->getProperties();
+// dd($property_types);
 ?>
 
 <div class="container-xxl py-5">
@@ -55,9 +59,9 @@ $property_types = App::getQueryBuilder()->from('property_type')->fetchAll(Proper
           <div class="col-md-4">
             <select class="form-select border-0 py-3">
               <option selected>Property Type</option>
-              <option value="1">Property Type 1</option>
-              <option value="2">Property Type 2</option>
-              <option value="3">Property Type 3</option>
+              <?php foreach($property_types as $_property): ?>
+                <option value="1"><?= $_property->getName() ?></option>
+              <?php endforeach ?>
             </select>
           </div>
           <div class="col-md-4">
@@ -139,162 +143,35 @@ $property_types = App::getQueryBuilder()->from('property_type')->fetchAll(Proper
       <!-- Featured -->
       <div id="tab-1" class="tab-pane fade show p-0 active">
         <div class="row g-4">
-          <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-            <div class="property-item rounded overflow-hidden">
-              <div class="position-relative overflow-hidden">
-                <a href=""><img class="img-fluid" src="https://cdn.pixabay.com/photo/2016/06/24/10/47/house-1477041__340.jpg" alt="" /></a>
-                <div class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">
-                  For Sell
+          
+          <?php foreach($properties as $property): ?>
+            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+              <div class="property-item rounded overflow-hidden">
+                <div class="position-relative overflow-hidden">
+                  <a href=""><img class="img-fluid" src="https://cdn.pixabay.com/photo/2016/06/24/10/47/house-1477041__340.jpg" alt="" /></a>
+                  <div class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">
+                    For Sell
+                  </div>
+                  <div class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3">
+                    <?= $property->name ?>
+                  </div>
                 </div>
-                <div class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3">
-                  Appartment
+                <div class="p-4 pb-0">
+                  <h5 class="text-primary mb-3"><?= Number::priceFormatter($property->price) ?></h5>
+                  <a class="d-block h5 mb-2" href="">Golden Urban House For Sell</a>
+                  <p>
+                    <i class="fa fa-map-marker-alt text-primary me-2"></i><?= $property->address ?>
+                  </p>
                 </div>
-              </div>
-              <div class="p-4 pb-0">
-                <h5 class="text-primary mb-3">$12,345</h5>
-                <a class="d-block h5 mb-2" href="">Golden Urban House For Sell</a>
-                <p>
-                  <i class="fa fa-map-marker-alt text-primary me-2"></i>022 Mirugi Goma, North-Kivu DRC
-                </p>
-              </div>
-              <div class="d-flex border-top">
-                <small class="flex-fill text-center border-end py-2"><i class="fa fa-ruler-combined text-primary me-2"></i>1000 Sqft</small>
-                <small class="flex-fill text-center border-end py-2"><i class="fa fa-bed text-primary me-2"></i>3 Bed</small>
-                <small class="flex-fill text-center py-2"><i class="fa fa-bath text-primary me-2"></i>2
-                  Bath</small>
+                <div class="d-flex border-top">
+                  <small class="flex-fill text-center border-end py-2"><i class="fa fa-ruler-combined text-primary me-2"></i><?= $property->salons ?> salons</small>
+                  <small class="flex-fill text-center border-end py-2"><i class="fa fa-bed text-primary me-2"></i><?= $property->rooms ?> Bed</small>
+                  <small class="flex-fill text-center py-2"><i class="fa fa-bath text-primary me-2"></i><?= $property->bath_rooms ?> Bath</small>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-            <div class="property-item rounded overflow-hidden">
-              <div class="position-relative overflow-hidden">
-                <a href=""><img class="img-fluid" src="https://cdn.pixabay.com/photo/2016/08/11/23/48/mountains-1587287__340.jpg" alt="" /></a>
-                <div class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">
-                  For Rent
-                </div>
-                <div class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3">
-                  Villa
-                </div>
-              </div>
-              <div class="p-4 pb-0">
-                <h5 class="text-primary mb-3">$12,345</h5>
-                <a class="d-block h5 mb-2" href="">Golden Urban House For Sell</a>
-                <p>
-                  <i class="fa fa-map-marker-alt text-primary me-2"></i>022 Mirugi Goma, North-Kivu DRC
-                </p>
-              </div>
-              <div class="d-flex border-top">
-                <small class="flex-fill text-center border-end py-2"><i class="fa fa-ruler-combined text-primary me-2"></i>1000 Sqft</small>
-                <small class="flex-fill text-center border-end py-2"><i class="fa fa-bed text-primary me-2"></i>3 Bed</small>
-                <small class="flex-fill text-center py-2"><i class="fa fa-bath text-primary me-2"></i>2
-                  Bath</small>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-            <div class="property-item rounded overflow-hidden">
-              <div class="position-relative overflow-hidden">
-                <a href=""><img class="img-fluid" src="https://cdn.pixabay.com/photo/2016/06/24/10/47/house-1477041__340.jpg" alt="" /></a>
-                <div class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">
-                  For Sell
-                </div>
-                <div class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3">
-                  Office
-                </div>
-              </div>
-              <div class="p-4 pb-0">
-                <h5 class="text-primary mb-3">$12,345</h5>
-                <a class="d-block h5 mb-2" href="">Golden Urban House For Sell</a>
-                <p>
-                  <i class="fa fa-map-marker-alt text-primary me-2"></i>022 Mirugi Goma, North-Kivu DRC
-                </p>
-              </div>
-              <div class="d-flex border-top">
-                <small class="flex-fill text-center border-end py-2"><i class="fa fa-ruler-combined text-primary me-2"></i>1000 Sqft</small>
-                <small class="flex-fill text-center border-end py-2"><i class="fa fa-bed text-primary me-2"></i>3 Bed</small>
-                <small class="flex-fill text-center py-2"><i class="fa fa-bath text-primary me-2"></i>2
-                  Bath</small>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-            <div class="property-item rounded overflow-hidden">
-              <div class="position-relative overflow-hidden">
-                <a href=""><img class="img-fluid" src="https://cdn.pixabay.com/photo/2016/06/24/10/47/house-1477041__340.jpg" alt="" /></a>
-                <div class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">
-                  For Rent
-                </div>
-                <div class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3">
-                  Building
-                </div>
-              </div>
-              <div class="p-4 pb-0">
-                <h5 class="text-primary mb-3">$12,345</h5>
-                <a class="d-block h5 mb-2" href="">Golden Urban House For Sell</a>
-                <p>
-                  <i class="fa fa-map-marker-alt text-primary me-2"></i>022 Mirugi Goma, North-Kivu DRC
-                </p>
-              </div>
-              <div class="d-flex border-top">
-                <small class="flex-fill text-center border-end py-2"><i class="fa fa-ruler-combined text-primary me-2"></i>1000 Sqft</small>
-                <small class="flex-fill text-center border-end py-2"><i class="fa fa-bed text-primary me-2"></i>3 Bed</small>
-                <small class="flex-fill text-center py-2"><i class="fa fa-bath text-primary me-2"></i>2
-                  Bath</small>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-            <div class="property-item rounded overflow-hidden">
-              <div class="position-relative overflow-hidden">
-                <a href=""><img class="img-fluid" src="https://cdn.pixabay.com/photo/2016/08/11/23/48/mountains-1587287__340.jpg" alt="" /></a>
-                <div class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">
-                  For Sell
-                </div>
-                <div class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3">
-                  Home
-                </div>
-              </div>
-              <div class="p-4 pb-0">
-                <h5 class="text-primary mb-3">$12,345</h5>
-                <a class="d-block h5 mb-2" href="">Golden Urban House For Sell</a>
-                <p>
-                  <i class="fa fa-map-marker-alt text-primary me-2"></i>022 Mirugi Goma, North-Kivu DRC
-                </p>
-              </div>
-              <div class="d-flex border-top">
-                <small class="flex-fill text-center border-end py-2"><i class="fa fa-ruler-combined text-primary me-2"></i>1000 Sqft</small>
-                <small class="flex-fill text-center border-end py-2"><i class="fa fa-bed text-primary me-2"></i>3 Bed</small>
-                <small class="flex-fill text-center py-2"><i class="fa fa-bath text-primary me-2"></i>2
-                  Bath</small>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-            <div class="property-item rounded overflow-hidden">
-              <div class="position-relative overflow-hidden">
-                <a href=""><img class="img-fluid" src="https://cdn.pixabay.com/photo/2016/06/24/10/47/house-1477041__340.jpg" alt="" /></a>
-                <div class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">
-                  For Rent
-                </div>
-                <div class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3">
-                  Shop
-                </div>
-              </div>
-              <div class="p-4 pb-0">
-                <h5 class="text-primary mb-3">$12,345</h5>
-                <a class="d-block h5 mb-2" href="">Golden Urban House For Sell</a>
-                <p>
-                  <i class="fa fa-map-marker-alt text-primary me-2"></i>022 Mirugi Goma, North-Kivu DRC
-                </p>
-              </div>
-              <div class="d-flex border-top">
-                <small class="flex-fill text-center border-end py-2"><i class="fa fa-ruler-combined text-primary me-2"></i>1000 Sqft</small>
-                <small class="flex-fill text-center border-end py-2"><i class="fa fa-bed text-primary me-2"></i>2 Bed</small>
-                <small class="flex-fill text-center py-2"><i class="fa fa-bath text-primary me-2"></i>2
-                  Bath</small>
-              </div>
-            </div>
-          </div>
+          <?php endforeach; ?>
+
           <div class="col-12 text-center wow fadeInUp" data-wow-delay="0.1s">
             <a class="btn btn-primary py-3 px-5" href="">Load More featured</a>
           </div>

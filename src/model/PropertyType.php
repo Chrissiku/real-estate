@@ -2,7 +2,6 @@
 namespace App\Model;
 
 use App\App;
-use App\Core\QueryBuilder;
 
 class PropertyType
 {
@@ -39,5 +38,15 @@ class PropertyType
                                 ->where('property_type_id  =:id')
                                 ->setParam('id', $property_type_id )
                                 ->count();
+    }
+
+    public function getPropertyTypeById(int $id)
+    {
+        return $this->queryBuilder
+                                ->select('name')
+                                ->from('property_type')
+                                ->where('id =:id')
+                                ->setParam('id', $id)
+                                ->fetch()->name;
     }
 }

@@ -21,6 +21,11 @@ class Router
         return $this;
     }
 
+    public function url(string $routeName, array $params = [])
+    {
+        return $this->router->generate($routeName, $params);
+    }
+
     public function run ()
     {
         $match = $this->router->match();

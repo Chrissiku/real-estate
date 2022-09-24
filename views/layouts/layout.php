@@ -44,7 +44,7 @@
                         <a href="/about" class="nav-item nav-link">About</a>
                         <a href="/property_list" class="nav-item nav-link">Property List</a>
                         <a href="/testimonial" class="nav-item nav-link">Testimonial</a>
-                        <a href="/contact" class="nav-item nav-link">Contact</a>
+                        <a href="/contact-us" class="nav-item nav-link">Contact</a>
                     </div>
                     <a href="" class="btn btn-primary px-3 d-none d-lg-flex">Add Property</a>
                 </div>
@@ -80,8 +80,7 @@
                     <div class="col-lg-3 col-md-6">
                         <h5 class="text-white mb-4">Quick Links</h5>
                         <a class="btn btn-link text-white-50" href="/about">About Us</a>
-                        <a class="btn btn-link text-white-50" href="/contact">Contact Us</a>
-                        <a class="btn btn-link text-white-50" href="/home">Our Services</a>
+                        <a class="btn btn-link text-white-50" href="/contact-us">Contact Us</a>
                     </div>
                     <div class="col-lg-3 col-md-6">
                         <h5 class="text-white mb-4">Photo Gallery</h5>

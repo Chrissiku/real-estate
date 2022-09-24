@@ -1,7 +1,5 @@
 <?php
 namespace App\Core;
-
-use App\App;
 use PDO;
 
 class QueryBuilder
@@ -84,7 +82,7 @@ class QueryBuilder
         return $this->offset(($this->page - 1) * $this->limit);
     }
 
-    private function toSQL ()
+    public function toSQL ()
     {
         $fields = implode(', ', $this->fields); 
         

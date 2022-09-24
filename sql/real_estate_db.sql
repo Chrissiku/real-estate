@@ -46,9 +46,15 @@ CREATE TABLE booking
     tenant_id INT(11) UNSIGNED NOT NULL,
     PRIMARY KEY (id),
     CONSTRAINT fk_property
-    	FOREIGN KEY (property_id) REFERENCES property (id),
+    	FOREIGN KEY (property_id)
+        REFERENCES property (id)
+        ON DELETE CASCADE
+        ON UPDATE RESTRICT
     CONSTRAINT fk_tenant
-    	FOREIGN KEY (tenant_id) REFERENCES tenant (id)
+    	FOREIGN KEY (tenant_id) 
+        REFERENCES tenant (id)
+        ON DELETE CASCADE
+        ON UPDATE RESTRICT
 );
 
 CREATE TABLE owner
@@ -82,7 +88,13 @@ CREATE TABLE property
     isFree BOOLEAN NOT NULL DEFAULT 1,
     PRIMARY KEY (id),
     CONSTRAINT fk_piece_detail
-    	FOREIGN KEY (piece_detail_id) REFERENCES piece_detail (id),
+    	FOREIGN KEY (piece_detail_id) 
+        REFERENCES piece_detail (id),
+        ON DELETE CASCADE
+        ON UPDATE RESTRICT
     CONSTRAINT fk_property_type
-    	FOREIGN KEY (property_type_id) REFERENCES property_type (id)
+    	FOREIGN KEY (property_type_id) 
+        REFERENCES property_type (id)
+        ON DELETE CASCADE
+        ON UPDATE RESTRICT
 );
