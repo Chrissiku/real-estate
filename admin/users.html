@@ -139,7 +139,7 @@
                           <a class="dropdown-item" href="settings.html"
                             >Settings</a
                           >
-                          <a class="dropdown-item"  href="./login.html"
+                          <a class="dropdown-item" href="./login.html"
                             ><span>Log Out</span> <i class="fa fa-sign-out"></i
                           ></a>
                         </div>
@@ -153,101 +153,219 @@
           <!-- end topbar -->
           <!-- dashboard inner -->
           <div class="midde_cont">
-            
             <div class="container-fluid">
               <div class="row column_title">
                 <div class="col-md-12">
                   <div class="page_title">
-                    <h2>Users List</h2>
+                    <h2>Users pane</h2>
                   </div>
                 </div>
-              </div>
-            </div>
+              </div><!-- Users actions -->
 
-            <!-- Start Tables -->
-            <!-- Listing table -->
-            <div class="row column1">
-              <div class="col-md-12">
-                <div class="white_shd full margin_bottom_30">
-                  <div class="full graph_head">
-                    <div class="heading1 margin_0">
-                      <h2>Properties <small>( Listing )</small></h2>
-                    </div>
+            <div class="tab_style2">
+              <div class="tabbar">
+                <nav>
+                  <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                    <a
+                      class="nav-item nav-link active"
+                      id="nav-home-tab"
+                      data-toggle="tab"
+                      href="#users_list"
+                      role="tab"
+                      aria-selected="true"
+                      >View Users List</a
+                    >
+                    <a
+                      class="nav-item nav-link"
+                      id="nav-profile-tab"
+                      data-toggle="tab"
+                      href="#add_new"
+                      role="tab"
+                      aria-selected="false"
+                      >Add New User</a
+                    >
                   </div>
-                  <div class="full price_table padding_infor_info">
-                    <div class="row">
-                      <div class="col-lg-12">
-                        <div class="table-responsive" id="myTable">
-                          <table class="table table-striped projects">
-                            <thead class="thead-dark">
-                              <tr>
-                                <th style="width: 2%">No</th>
-                                <th style="width: 30%">Project Title</th>
-                                <th>Members</th>
-                                <th>Project Progress</th>
-                                <th>Status</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr>
-                                <td>1</td>
-                                <td>
-                                  <a>Sed ut perspiciatis </a>
-                                </td>
-                                <td>
-                                  <ul class="list-inline">
-                                    <li>
-                                      <img
-                                        width="40"
-                                        src="images/layout_img/msg2.png"
-                                        class="rounded-circle"
-                                        alt="#"
-                                      />
-                                    </li>
-                                    <li>
-                                      <img
-                                        width="40"
-                                        src="images/layout_img/msg3.png"
-                                        class="rounded-circle"
-                                        alt="#"
-                                      />
-                                    </li>
-                                  </ul>
-                                </td>
-                                <td class="project_progress">
-                                  <div class="progress progress_sm">
-                                    <div
-                                      class="progress-bar progress-bar-animated progress-bar-striped"
-                                      role="progressbar"
-                                      aria-valuenow="97"
-                                      aria-valuemin="0"
-                                      aria-valuemax="100"
-                                      style="width: 98%"
-                                    ></div>
-                                  </div>
-                                  <small>Almost Completed</small>
-                                </td>
-                                <td>
-                                  <button
-                                    type="button"
-                                    class="btn btn-success btn-xs"
+                </nav>
+                <div class="tab-content" id="nav-tabContent">
+                  <div
+                    class="tab-pane fade show active"
+                    id="users_list"
+                    role="tabpanel"
+                    aria-labelledby="nav-home-tab"
+                  >
+                    <!-- Users List -->
+                    <div class="row column1">
+                      <div class="col-md-12">
+                        <div class="white_shd full margin_bottom_30">
+                          <div class="full graph_head">
+                            <div class="heading1 margin_0">
+                              <h2>Users <small>( Listing )</small></h2>
+                            </div>
+                          </div>
+                          <div class="full price_table padding_infor_info">
+                            <div class="row">
+                              <div class="col-lg-12">
+                                <div class="table-responsive" id="myTable">
+                                  <table
+                                    class="table table-bordered table-striped projects"
                                   >
-                                    Success
-                                  </button>
-                                </td>
-                              </tr>
-                            </tbody>
-                          </table>
+                                    <thead class="thead-dark">
+                                      <tr>
+                                        <th style="width: 2%">No</th>
+                                        <th style="width: 30%">Full name</th>
+                                        <th>Username</th>
+                                        <th>email</th>
+                                        <th>Type</th>
+                                        <th class="text-center">State</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      <tr>
+                                        <td>1</td>
+                                        <td>
+                                          <a>First-name and last-name</a>
+                                        </td>
+                                        <td>
+                                          <a>Username</a>
+                                        </td>
+                                        <td>
+                                          <a>Email address</a>
+                                        </td>
+                                        <td>
+                                          <a>Type</a>
+                                        </td>
+                                        <td>
+                                          <button
+                                            type="button"
+                                            class="btn btn-info btn-xs"
+                                          >
+                                            Active
+                                          </button>
+                                          <button
+                                            type="button"
+                                            class="btn btn-danger btn-xs"
+                                          >
+                                            Deactive
+                                          </button>
+                                        </td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
                         </div>
                       </div>
+                      <!-- end row -->
+                    </div>
+                  </div>
+
+                  <!-- Add new -->
+                  <div
+                    class="tab-pane fade"
+                    id="add_new"
+                    role="tabpanel"
+                    aria-labelledby="nav-profile-tab"
+                  >
+                    <div class="login_form">
+                      <!-- Alert messages -->
+                      <div class="alert alert-success" role="alert">
+                        New User added successfully
+                      </div>
+                      <div class="alert alert-danger" role="alert">
+                        An error occurred
+                      </div>
+                      <!-- End alert messages -->
+
+                      <form>
+                        <div class="form-row">
+                          <div class="form-group col-md-6">
+                            <label for="inputEmail4">Email</label>
+                            <input
+                              type="email"
+                              class="form-control"
+                              id="inputEmail4"
+                              placeholder="Email"
+                            />
+                          </div>
+                          <div class="form-group col-md-6">
+                            <label for="inputPassword4">Password</label>
+                            <input
+                              type="password"
+                              class="form-control"
+                              id="inputPassword4"
+                              placeholder="Password"
+                            />
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label for="inputAddress">Address</label>
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="inputAddress"
+                            placeholder="1234 Main St"
+                          />
+                        </div>
+                        <div class="form-group">
+                          <label for="inputAddress2">Address 2</label>
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="inputAddress2"
+                            placeholder="Apartment, studio, or floor"
+                          />
+                        </div>
+                        <div class="form-row">
+                          <div class="form-group col-md-6">
+                            <label for="inputCity">City</label>
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="inputCity"
+                            />
+                          </div>
+                          <div class="form-group col-md-4">
+                            <label for="inputState">State</label>
+                            <select id="inputState" class="form-control">
+                              <option selected>Choose...</option>
+                              <option>...</option>
+                            </select>
+                          </div>
+                          <div class="form-group col-md-2">
+                            <label for="inputZip">Zip</label>
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="inputZip"
+                            />
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <div class="form-check">
+                            <input
+                              class="form-check-input"
+                              type="checkbox"
+                              id="gridCheck"
+                            />
+                            <label class="form-check-label" for="gridCheck">
+                              Check me out
+                            </label>
+                          </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                          Add new
+                        </button>
+                      </form>
                     </div>
                   </div>
                 </div>
               </div>
-              <!-- end row -->
+            </div>
             </div>
 
-            <!-- End Tables -->
+            
             <!-- footer -->
             <div class="container-fluid">
               <div class="footer">
