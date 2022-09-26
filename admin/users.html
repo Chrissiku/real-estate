@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- basic -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- mobile metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1" />
+    <!-- site metas -->
+    <title>Home Rental | Admin dashboard</title>
+    <!-- site icon -->
+    <link rel="icon" href="../images/icon.png" type="image/png" />
+    <!-- bootstrap css -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css"
+    />
+    <!-- site css -->
+    <link rel="stylesheet" href="style.css" />
+    <!-- responsive css -->
+    <link rel="stylesheet" href="css/responsive.css" />
+    <!-- color css -->
+    <link rel="stylesheet" href="css/colors.css" />
+    <!-- select bootstrap -->
+    <link rel="stylesheet" href="css/bootstrap-select.css" />
+    <!-- scrollbar css -->
+    <link rel="stylesheet" href="css/perfect-scrollbar.css" />
+    <!-- custom css -->
+    <link rel="stylesheet" href="css/custom.css" />
+  </head>
+  <body class="dashboard dashboard_1">
+    <div class="full_container">
+      <div class="inner_container">
+        <!-- Sidebar  -->
+        <nav id="sidebar">
+          <div class="sidebar_blog_1">
+            <div class="sidebar-header">
+              <div class="logo_section">
+                <a href="index.html"
+                  ><img
+                    class="logo_icon img-responsive"
+                    src="images/logo/logo_icon.png"
+                    alt="#"
+                /></a>
+              </div>
+            </div>
+            <div class="sidebar_user_info">
+              <div class="icon_setting"></div>
+              <div class="user_profle_side">
+                <div class="user_img">
+                  <img
+                    class="img-responsive"
+                    src="images/layout_img/user_img.jpg"
+                    alt="#"
+                  />
+                </div>
+                <div class="user_info">
+                  <h6>Chris Siku</h6>
+                  <p><span class="online_animation"></span> Online</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="sidebar_blog_2">
+            <h4>General</h4>
+            <ul class="list-unstyled components">
+              <li class="active">
+                <a href="./index.html"
+                  ><i class="fa fa-dashboard yellow_color"></i>
+                  <span>Dashboard</span></a
+                >
+              </li>
+              <li class="active">
+                <a href="./users.html"
+                  ><i class="fa fa-dashboard yellow_color"></i>
+                  <span>Users</span></a
+                >
+              </li>
+              <li class="active">
+                <a href="./properties.html"
+                  ><i class="fa fa-dashboard yellow_color"></i>
+                  <span>Properties</span></a
+                >
+              </li>
+            </ul>
+          </div>
+        </nav>
+        <!-- end sidebar -->
+
+        <!-- left content -->
+        <div id="content">
+          <!-- topbar -->
+          <div class="topbar">
+            <nav class="navbar navbar-expand-lg navbar-light">
+              <div class="full">
+                <button
+                  type="button"
+                  id="sidebarCollapse"
+                  class="sidebar_toggle"
+                >
+                  <i class="fa fa-bars"></i>
+                </button>
+                <div class="logo_section">
+                  <a href="index.html"
+                    ><img
+                      class="img-responsive"
+                      src="images/logo/logo.png"
+                      alt="webiste logo"
+                  /></a>
+                </div>
+                <div class="right_topbar">
+                  <div class="icon_info">
+                    <ul>
+                      <li>
+                        <a href="#"
+                          ><i class="fa fa-bell-o"></i
+                          ><span class="badge">2</span></a
+                        >
+                      </li>
+                      <li>
+                        <a href="#"><i class="fa fa-question-circle"></i></a>
+                      </li>
+                      <li>
+                        <a href="#"
+                          ><i class="fa fa-envelope-o"></i
+                          ><span class="badge">3</span></a
+                        >
+                      </li>
+                    </ul>
+                    <ul class="user_profile_dd">
+                      <li>
+                        <a class="dropdown-toggle" data-toggle="dropdown"
+                          ><img
+                            class="img-responsive rounded-circle"
+                            src="images/layout_img/user_img.jpg"
+                            alt="#"
+                          /><span class="name_user">Chris Siku</span></a
+                        >
+                        <div class="dropdown-menu">
+                          <a class="dropdown-item" href="profile.html"
+                            >My Profile</a
+                          >
+                          <a class="dropdown-item" href="settings.html"
+                            >Settings</a
+                          >
+                          <a class="dropdown-item" href="./login.html"
+                            ><span>Log Out</span> <i class="fa fa-sign-out"></i
+                          ></a>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </nav>
+          </div>
+          <!-- end topbar -->
+          <!-- dashboard inner -->
+          <div class="midde_cont">
+            <div class="container-fluid">
+              <div class="row column_title">
+                <div class="col-md-12">
+                  <div class="page_title">
+                    <h2>Users pane</h2>
+                  </div>
+                </div>
+              </div><!-- Users actions -->
+
+            <div class="tab_style2">
+              <div class="tabbar">
+                <nav>
+                  <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                    <a
+                      class="nav-item nav-link active"
+                      id="nav-home-tab"
+                      data-toggle="tab"
+                      href="#users_list"
+                      role="tab"
+                      aria-selected="true"
+                      >View Users List</a
+                    >
+                    <a
+                      class="nav-item nav-link"
+                      id="nav-profile-tab"
+                      data-toggle="tab"
+                      href="#add_new"
+                      role="tab"
+                      aria-selected="false"
+                      >Add New User</a
+                    >
+                  </div>
+                </nav>
+                <div class="tab-content" id="nav-tabContent">
+                  <div
+                    class="tab-pane fade show active"
+                    id="users_list"
+                    role="tabpanel"
+                    aria-labelledby="nav-home-tab"
+                  >
+                    <!-- Users List -->
+                    <div class="row column1">
+                      <div class="col-md-12">
+                        <div class="white_shd full margin_bottom_30">
+                          <div class="full graph_head">
+                            <div class="heading1 margin_0">
+                              <h2>Users <small>( Listing )</small></h2>
+                            </div>
+                          </div>
+                          <div class="full price_table padding_infor_info">
+                            <div class="row">
+                              <div class="col-lg-12">
+                                <div class="table-responsive" id="myTable">
+                                  <table
+                                    class="table table-bordered table-striped projects"
+                                  >
+                                    <thead class="thead-dark">
+                                      <tr>
+                                        <th style="width: 2%">No</th>
+                                        <th style="width: 30%">Full name</th>
+                                        <th>Username</th>
+                                        <th>email</th>
+                                        <th>Type</th>
+                                        <th class="text-center">State</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      <tr>
+                                        <td>1</td>
+                                        <td>
+                                          <a>First-name and last-name</a>
+                                        </td>
+                                        <td>
+                                          <a>Username</a>
+                                        </td>
+                                        <td>
+                                          <a>Email address</a>
+                                        </td>
+                                        <td>
+                                          <a>Type</a>
+                                        </td>
+                                        <td>
+                                          <button
+                                            type="button"
+                                            class="btn btn-info btn-xs"
+                                          >
+                                            Active
+                                          </button>
+                                          <button
+                                            type="button"
+                                            class="btn btn-danger btn-xs"
+                                          >
+                                            Deactive
+                                          </button>
+                                        </td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- end row -->
+                    </div>
+                  </div>
+
+                  <!-- Add new -->
+                  <div
+                    class="tab-pane fade"
+                    id="add_new"
+                    role="tabpanel"
+                    aria-labelledby="nav-profile-tab"
+                  >
+                    <div class="login_form">
+                      <!-- Alert messages -->
+                      <div class="alert alert-success" role="alert">
+                        New User added successfully
+                      </div>
+                      <div class="alert alert-danger" role="alert">
+                        An error occurred
+                      </div>
+                      <!-- End alert messages -->
+
+                      <form>
+                        <div class="form-row">
+                          <div class="form-group col-md-6">
+                            <label for="inputEmail4">Email</label>
+                            <input
+                              type="email"
+                              class="form-control"
+                              id="inputEmail4"
+                              placeholder="Email"
+                            />
+                          </div>
+                          <div class="form-group col-md-6">
+                            <label for="inputPassword4">Password</label>
+                            <input
+                              type="password"
+                              class="form-control"
+                              id="inputPassword4"
+                              placeholder="Password"
+                            />
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label for="inputAddress">Address</label>
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="inputAddress"
+                            placeholder="1234 Main St"
+                          />
+                        </div>
+                        <div class="form-group">
+                          <label for="inputAddress2">Address 2</label>
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="inputAddress2"
+                            placeholder="Apartment, studio, or floor"
+                          />
+                        </div>
+                        <div class="form-row">
+                          <div class="form-group col-md-6">
+                            <label for="inputCity">City</label>
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="inputCity"
+                            />
+                          </div>
+                          <div class="form-group col-md-4">
+                            <label for="inputState">State</label>
+                            <select id="inputState" class="form-control">
+                              <option selected>Choose...</option>
+                              <option>...</option>
+                            </select>
+                          </div>
+                          <div class="form-group col-md-2">
+                            <label for="inputZip">Zip</label>
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="inputZip"
+                            />
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <div class="form-check">
+                            <input
+                              class="form-check-input"
+                              type="checkbox"
+                              id="gridCheck"
+                            />
+                            <label class="form-check-label" for="gridCheck">
+                              Check me out
+                            </label>
+                          </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                          Add new
+                        </button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </div>
+
+            
+            <!-- footer -->
+            <div class="container-fluid">
+              <div class="footer">
+                <p>Copyright © 2022 Refactored by Chris Siku.</p>
+              </div>
+            </div>
+          </div>
+          <!-- end dashboard inner -->
+        </div>
+      </div>
+    </div>
+    <!-- jQuery -->
+    <script src="js/jquery.min.js"></script>
+    <script src="cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <!-- wow animation -->
+    <script src="js/animate.js"></script>
+    <!-- select country -->
+    <script src="js/bootstrap-select.js"></script>
+    <!-- owl carousel -->
+    <script src="js/owl.carousel.js"></script>
+    <!-- chart js -->
+    <script src="js/Chart.min.js"></script>
+    <script src="js/Chart.bundle.min.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/analyser.js"></script>
+    <!-- nice scrollbar -->
+    <script src="js/perfect-scrollbar.min.js"></script>
+    <script>
+      var ps = new PerfectScrollbar("#sidebar");
+    </script>
+    <!-- custom js -->
+    <script src="js/custom.js"></script>
+    <script src="js/chart_custom_style1.js"></script>
+  </body>
+</html>
