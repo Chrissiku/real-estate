@@ -1,7 +1,7 @@
 <?php
 namespace App\Core;
 
-use App\Database;
+use App\App;
 use PDO;
 
 class Validator
@@ -30,7 +30,7 @@ class Validator
         }
     }
 
-    public function isUnique (Database $db, string $table, string $field, string $error_msg)
+    public function isUnique ($db, string $table, string $field, string $error_msg)
     {
         $query = $db->query("SELECT FROM $table WHERE $field = ?", $field);
         $record = $query->fetch();
@@ -40,14 +40,20 @@ class Validator
         }
     }
 
-    public function isEmail (string $email)
+    public function isEmail (string $field, string $errorMessage)
     {
-        //
+        if(!filter_var($this->getField($field), FILTER_VALIDATE_EMAIL)) {
+            $this->errors[$field] = $errorMessage;
+        }
     }
 
-    public function isPasswordsMatched(string $password)
+    public function isPasswordsMatched(string $field, string $errorMessage)
     {
-        //
+        // some version of PHP does not support the following notation => empty($this->data[$field])
+        $_field = $this->data[$field]; 
+        if(empty($_field) || $_field != $this->data[$field.'_confirm']) {
+            $this->errors[$field] = $errorMessage;
+        }
     }
 
     public function isValidate (): bool
