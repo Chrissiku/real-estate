@@ -29,8 +29,8 @@ $router = new Router(dirname(__DIR__) . DIRECTORY_SEPARATOR. 'views');
 $router->get('/', 'components/index', '_home')
        ->get('/home', 'components/index', '__home')
        ->get('/about', 'components/about', 'about')
-       ->get('/property_list', 'components/property_list', 'property_list')
        ->get('/property/[i:id]', 'components/single_property', 'single_property')
+       ->get('/property_list', 'components/property_list', 'property_list')
        ->get('/testimonial', 'components/testimonial', 'testimonial')
        ->get('/contact-us', 'components/contact', 'contact')
        ->run();

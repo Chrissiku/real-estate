@@ -5,7 +5,7 @@ use App\Core\Pagination;
 use App\Model\PropertyType;
 
 $pagination = new Pagination(
-  "SELECT p.*, pt.name as pt_name, pd.*
+  "SELECT p.*, pt.name as pt_name, pd.id as pd_id, pd.salons,pd.rooms,pd.bath_rooms,pd.swimming_pools
   FROM property p
   INNER JOIN property_type pt
   ON p.property_type_id  = pt.id
