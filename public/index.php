@@ -30,7 +30,7 @@ $router->get('/', 'components/index', '_home')
        ->get('/home', 'components/index', '__home')
        ->get('/about', 'components/about', 'about')
        ->get('/property_list', 'components/property_list', 'property_list')
+       ->get('/property/[i:id]', 'components/single_property', 'single_property')
        ->get('/testimonial', 'components/testimonial', 'testimonial')
        ->get('/contact-us', 'components/contact', 'contact')
-       ->get('/admin', 'components/admin/index', 'admin_index')
        ->run();
