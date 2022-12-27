@@ -46,6 +46,11 @@ To get a local copy up and running follow these simple example steps.
 - Twitter: [@twitterhandle](https://twitter.com/christian_siku)
 - LinkedIn: [LinkedIn](https://www.linkedin.com/in/christian-siku/)
 
+👤 **Jodrack**
+
+- GitHub: [jodrack07](https://github.com/jodrack07)
+- LinkedIn: [Buingo Joseph](https://www.linkedin.com/in/jodrack/)
+
 ## Contributing 🤝 
 
 Contributions, issues, and feature requests are welcome!
