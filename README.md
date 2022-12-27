@@ -40,7 +40,7 @@ To get a local copy up and running follow these simple example steps.
 - Follow normal step once download in your computer and use it as it's yours.
 ## Author
 
-👤 **Jimmy Bazel**
+👤 **Christian Siku**
 
 - GitHub: [@githubhandle](https://github.com/Chrissiku)
 - Twitter: [@twitterhandle](https://twitter.com/christian_siku)
