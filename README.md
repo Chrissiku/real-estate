@@ -9,7 +9,7 @@
 In order to achieve this project I used some resources and technologies listed below :
 ## Built With
 
-- Major languages : JavaScript , HTML and CSS
+- Major languages : JavaScript , HTML, CSS and PHP
 - Toolchain : none
 - Library and Framework : `Bootstrap5`, and `Jquery`
 - Technologies used : Github, Git, Gitflow
